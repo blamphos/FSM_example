@@ -10,9 +10,20 @@ enum StateT {
 
 class State {
 public:
-    virtual void OnStateExecution(message_t msg) {}
-    virtual void OnStateEnter() {}
-    virtual void OnStateExit() {}
+    virtual void onStateExecution(message_t msg) {}
+    virtual void onStateEnter() {}
+    virtual void onStateExit() {}
+
+    void setNextState(State *state) {
+        _nextState = state;
+    }
+
+    State *getNextState() {
+        return _nextState;
+    }
+
+private:
+    State *_nextState;
 };
 
-#endif // GLOBALDEFINITIONS_H
+#endif

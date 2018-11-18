@@ -3,25 +3,35 @@
 
 #include "GlobalDefinitions.h"
 
+#define MAX_NR_OF_STATES    2
+
 class StateMachine {
 public:
-    StateMachine() : _currentState(NULL) {
+    StateMachine(State *initState) : _currentState(initState) {
     }
 
-    void changeState(State *nextState) {
-        if (_currentState != NULL) {
-            _currentState->OnStateExit();
-        }
-        nextState->OnStateEnter();
-        _currentState = nextState;
+    void addState(State *newState, State *nextState) {
+        newState->setNextState(nextState);
     }
 
     void update(message_t msg) {
-        _currentState->OnStateExecution(msg);
+        if (msg.event == EVENT_CHANGE_STATE) {
+            changeNextState();
+        }
+        else {
+            _currentState->onStateExecution(msg);
+        }
     }
 
 private:
     State *_currentState;
+
+    void changeNextState() {
+        _currentState->onStateExit();
+        State *nextState = _currentState->getNextState();
+        nextState->onStateEnter();
+        _currentState = nextState;
+    }
 };
 
-#endif // STATEMACHINE_H
+#endif

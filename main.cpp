@@ -10,18 +10,18 @@ void wait_ms(int t) {
 
 class IrState: public State {
 public:
-    virtual void OnStateEnter() {
+    virtual void onStateEnter() {
         std::cout << "Enter IR state\n";
     }
 
-    virtual void OnStateExecution(message_t msg) {
+    virtual void onStateExecution(message_t msg) {
         static int input_counter = 0;
         static int volume = 0;
 
         switch (msg.event) {
             case EVENT_IR_COMMAND_RECEIVED:
                 std::cout << "IR command received\n";
-                EventQueue::post(EVENT_SET_VOLUME, volume % 99);
+                EventQueue::post(EVENT_SET_VOLUME, volume % 100);
                 volume++;
                 break;
             case EVENT_IR_MEAS_READY:
@@ -42,18 +42,18 @@ public:
         }
     }
 
-    virtual void OnStateExit() {
+    virtual void onStateExit() {
         std::cout << "Exit IR state\n";
     }
 };
 
 class SpdifState: public State {
 public:
-    virtual void OnStateEnter() {
+    virtual void onStateEnter() {
         std::cout << "Enter SPDIF state\n";
     }
 
-    virtual void OnStateExecution(message_t msg) {
+    virtual void onStateExecution(message_t msg) {
         switch (msg.event) {
             case EVENT_SPDIF_MEAS_READY:
                 EventQueue::post(EVENT_CHANGE_STATE, STATE_IR_MEAS);
@@ -63,7 +63,7 @@ public:
         }
     }
 
-    virtual void OnStateExit() {
+    virtual void onStateExit() {
         std::cout << "Exit SPDIF state\n";
     }
 };
@@ -91,18 +91,20 @@ void ticker_isr() {
             break;
         }
 
-        wait_ms(50);
+        wait_ms(200);
         ++counter;
     }
 }
 
 int main() {
-    StateMachine fsm;
+    std::cout << "Starting..." << std::endl;
+
     IrState irState;
     SpdifState spdifState;
 
-    fsm.changeState(&spdifState);
-    EventQueue::post(EVENT_SPDIF_MEAS_READY);
+    StateMachine fsm(&spdifState);
+    fsm.addState(&spdifState, &irState);
+    fsm.addState(&irState, &spdifState);
 
     std::thread t1(&ticker_isr);
 
@@ -112,16 +114,6 @@ int main() {
         switch (msg.event) {
         case EVENT_IDLE:
             wait_ms(10);
-            break;
-        case EVENT_CHANGE_STATE:
-            switch(static_cast<EventT>(msg.data)) {
-            case STATE_IR_MEAS:
-                fsm.changeState(&irState);
-                break;
-            case STATE_SPDIF_MEAS:
-                fsm.changeState(&spdifState);
-                break;
-            }
             break;
         default:
             fsm.update(msg);
