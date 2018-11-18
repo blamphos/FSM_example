@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1542548380 source:c:\data\sw_dev\fsm_example\main.cpp
+	<iostream>
+	<thread>
+	<chrono>
+	"GlobalDefinitions.h"
+	"StateMachine.h"
+
+1542298463 c:\data\sw_dev\fsm_example\include\machine.h
+	"State.h"
+
+1542435513 c:\data\sw_dev\fsm_example\include\state.h
+
+1542437533 c:\data\sw_dev\fsm_example\include\fifo.h
+
+1542546152 c:\data\sw_dev\fsm_example\include\globaldefinitions.h
+	"EventQueue.h"
+
+1542529945 c:\data\sw_dev\fsm_example\include\eventqueue.h
+	"Fifo.h"
+
+1542548380 c:\data\sw_dev\fsm_example\include\statemachine.h
+	"GlobalDefinitions.h"
+
