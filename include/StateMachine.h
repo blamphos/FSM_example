@@ -1,34 +1,28 @@
 #ifndef STATEMACHINE_H
 #define STATEMACHINE_H
 
-#include "GlobalDefinitions.h"
+#include "EventQueue.h"
+#include "State.h"
+#include "SpdifState.h"
 
 class StateMachine {
 public:
-    StateMachine(State *initState) : _currentState(initState) {
-        _currentState->onStateEnter();
-    }
-
-    void addState(State *newState, State *nextState) {
-        newState->setNextState(nextState);
+    StateMachine() {
+        _currentState = SpdifState::instance();
+        _currentState->onStateEnter(this);
     }
 
     void dispatch(message_t msg) {
-        if (msg.event == EVENT_CHANGE_STATE) {
-            changeNextState();
-        }
-        else {
-            _currentState->onStateExecution(msg);
-        }
+        _currentState->onStateExecution(this, msg);
     }
 
 private:
+    friend class State;
     State *_currentState;
 
-    void changeNextState() {
-        _currentState->onStateExit();
-        State *nextState = _currentState->getNextState();
-        nextState->onStateEnter();
+    void changeState(State *nextState) {
+        _currentState->onStateExit(this);
+        nextState->onStateEnter(this);
         _currentState = nextState;
     }
 };

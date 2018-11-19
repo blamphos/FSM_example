@@ -23,8 +23,12 @@
 		</Compiler>
 		<Unit filename="include/EventQueue.h" />
 		<Unit filename="include/GlobalDefinitions.h" />
+		<Unit filename="include/IrState.h" />
+		<Unit filename="include/SpdifState.h" />
+		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/State.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
