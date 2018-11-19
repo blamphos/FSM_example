@@ -3,11 +3,6 @@
 
 #include "EventQueue.h"
 
-enum StateT {
-	STATE_IR_MEAS,
-	STATE_SPDIF_MEAS
-};
-
 class State {
 public:
     virtual void onStateExecution(message_t msg) {}

@@ -12,6 +12,9 @@ class IrState: public State {
 public:
     virtual void onStateEnter() {
         std::cout << "Enter IR state\n";
+        //ticker.attach_us(&ticker_isr, IR_SAMPLING_PERIOD_US);
+        //spdifDecoder.toggleNextInput();
+        //ir_receiver.startMeas();
     }
 
     virtual void onStateExecution(message_t msg) {
@@ -25,7 +28,7 @@ public:
                 volume++;
                 break;
             case EVENT_IR_MEAS_READY:
-                EventQueue::post(EVENT_CHANGE_STATE, STATE_SPDIF_MEAS);
+                EventQueue::post(EVENT_CHANGE_STATE);
                 break;
             case EVENT_SET_VOLUME:
                 std::cout << "Set volume " << msg.data << std::endl;
@@ -44,6 +47,7 @@ public:
 
     virtual void onStateExit() {
         std::cout << "Exit IR state\n";
+        //ticker.detach();
     }
 };
 
@@ -51,12 +55,13 @@ class SpdifState: public State {
 public:
     virtual void onStateEnter() {
         std::cout << "Enter SPDIF state\n";
+        //spdifDecoder.startMeas();
     }
 
     virtual void onStateExecution(message_t msg) {
         switch (msg.event) {
             case EVENT_SPDIF_MEAS_READY:
-                EventQueue::post(EVENT_CHANGE_STATE, STATE_IR_MEAS);
+                EventQueue::post(EVENT_CHANGE_STATE);
                 break;
             default:
                 break;
@@ -116,7 +121,7 @@ int main() {
             wait_ms(10);
             break;
         default:
-            fsm.update(msg);
+            fsm.dispatch(msg);
             break;
         }
     }

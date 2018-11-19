@@ -22,3 +22,21 @@
 1542548380 c:\data\sw_dev\fsm_example\include\statemachine.h
 	"GlobalDefinitions.h"
 
+1542626359 source:c:\data\fsm_example\main.cpp
+	<iostream>
+	<thread>
+	<chrono>
+	"GlobalDefinitions.h"
+	"StateMachine.h"
+
+1542627044 c:\data\fsm_example\include\globaldefinitions.h
+	"EventQueue.h"
+
+1542619189 c:\data\fsm_example\include\eventqueue.h
+	"Fifo.h"
+
+1542619189 c:\data\fsm_example\include\fifo.h
+
+1542626234 c:\data\fsm_example\include\statemachine.h
+	"GlobalDefinitions.h"
+

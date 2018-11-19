@@ -3,18 +3,17 @@
 
 #include "GlobalDefinitions.h"
 
-#define MAX_NR_OF_STATES    2
-
 class StateMachine {
 public:
     StateMachine(State *initState) : _currentState(initState) {
+        _currentState->onStateEnter();
     }
 
     void addState(State *newState, State *nextState) {
         newState->setNextState(nextState);
     }
 
-    void update(message_t msg) {
+    void dispatch(message_t msg) {
         if (msg.event == EVENT_CHANGE_STATE) {
             changeNextState();
         }
