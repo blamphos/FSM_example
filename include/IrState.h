@@ -5,12 +5,13 @@
 
 class IrState: public State {
 public:
-    IrState();
-    virtual void onStateEnter(StateMachine *fsm);
-    virtual void onStateExecution(StateMachine *fsm, message_t msg);
-    virtual void onStateExit(StateMachine *fsm);
+    virtual void onStateEnter();
+    virtual void onStateExecution(message_t msg);
+    virtual void onStateExit();
     static State *instance();
-};
 
+private:
+    IrState();
+};
 
 #endif

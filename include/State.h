@@ -9,12 +9,12 @@ class StateMachine;
 class State {
 public:
     State();
-    virtual void onStateExecution(StateMachine *fsm, message_t msg) {}
-    virtual void onStateEnter(StateMachine *fsm) {}
-    virtual void onStateExit(StateMachine *fsm) {}
+    virtual void onStateExecution(message_t msg) {}
+    virtual void onStateEnter() {}
+    virtual void onStateExit() {}
 
 protected:
-    void changeState(StateMachine *fsm, State *nextState);
+    void changeState(State *nextState);
 };
 
 #endif

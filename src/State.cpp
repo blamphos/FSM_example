@@ -6,6 +6,6 @@ State::State()
     //ctor
 }
 
-void State::changeState(StateMachine *fsm, State *nextState) {
-    fsm->changeState(nextState);
+void State::changeState(State *nextState) {
+    StateMachine::instance()->changeState(nextState);
 }

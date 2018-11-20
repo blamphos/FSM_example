@@ -6,14 +6,14 @@ SpdifState::SpdifState()
     //ctor
 }
 
-void SpdifState::onStateEnter(StateMachine *fsm) {
+void SpdifState::onStateEnter() {
     std::cout << "Enter IR state\n";
     //ticker.attach_us(&ticker_isr, IR_SAMPLING_PERIOD_US);
     //spdifDecoder.toggleNextInput();
     //ir_receiver.startMeas();
 }
 
-void SpdifState::onStateExecution(StateMachine *fsm, message_t msg) {
+void SpdifState::onStateExecution(message_t msg) {
     static int input_counter = 0;
     static int volume = 0;
 
@@ -25,7 +25,7 @@ void SpdifState::onStateExecution(StateMachine *fsm, message_t msg) {
             break;
         case EVENT_IR_MEAS_READY:
             //EventQueue::post(EVENT_CHANGE_STATE);
-            changeState(fsm, SpdifState::instance());
+            changeState(SpdifState::instance());
             break;
         case EVENT_SET_VOLUME:
             std::cout << "Set volume " << msg.data << std::endl;
@@ -42,13 +42,13 @@ void SpdifState::onStateExecution(StateMachine *fsm, message_t msg) {
     }
 }
 
-void SpdifState::onStateExit(StateMachine *fsm) {
+void SpdifState::onStateExit() {
     std::cout << "Exit IR state\n";
     //ticker.detach();
 }
 
 State *SpdifState::instance() {
-    static IrState inst;
+    static SpdifState inst;
     return &inst;
 }
 

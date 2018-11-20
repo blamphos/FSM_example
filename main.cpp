@@ -39,8 +39,6 @@ void ticker_isr() {
 int main() {
     std::cout << "Starting..." << std::endl;
 
-    StateMachine fsm;
-
     std::thread t1(&ticker_isr);
 
     while (1) {
@@ -51,7 +49,7 @@ int main() {
             wait_ms(10);
             break;
         default:
-            fsm.dispatch(msg);
+            StateMachine::instance()->dispatch(msg);
             break;
         }
     }

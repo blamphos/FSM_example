@@ -1,26 +1,16 @@
 #ifndef STATEMACHINE_H
 #define STATEMACHINE_H
 
-#include "SpdifState.h"
+#include "State.h"
 
 class StateMachine {
 public:
-    StateMachine() {
-        _currentState = SpdifState::instance();
-        _currentState->onStateEnter(this);
-    }
-
-    void dispatch(message_t msg) {
-        _currentState->onStateExecution(this, msg);
-    }
-
-    void changeState(State *nextState) {
-        _currentState->onStateExit(this);
-        nextState->onStateEnter(this);
-        _currentState = nextState;
-    }
+    void dispatch(message_t msg);
+    void changeState(State *nextState);
+    static StateMachine *instance();
 
 private:
+    StateMachine();
     State *_currentState;
 };
 
