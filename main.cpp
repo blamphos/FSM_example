@@ -43,15 +43,10 @@ int main() {
 
     while (1) {
         message_t msg = EventQueue::get();
-
-        switch (msg.event) {
-        case EVENT_IDLE:
-            wait_ms(10);
-            break;
-        default:
+        if (msg.event != EVENT_IDLE) {
             StateMachine::instance()->dispatch(msg);
-            break;
         }
+        wait_ms(10);
     }
 
     return 0;
