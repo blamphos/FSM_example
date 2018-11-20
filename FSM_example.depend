@@ -8,7 +8,7 @@
 1542298463 c:\data\sw_dev\fsm_example\include\machine.h
 	"State.h"
 
-1542657638 c:\data\sw_dev\fsm_example\include\state.h
+1542694106 c:\data\sw_dev\fsm_example\include\state.h
 	<iostream>
 	"EventQueue.h"
 
@@ -19,9 +19,7 @@
 1542550407 c:\data\sw_dev\fsm_example\include\eventqueue.h
 	"Fifo.h"
 
-1542657836 c:\data\sw_dev\fsm_example\include\statemachine.h
-	"EventQueue.h"
-	"State.h"
+1542694034 c:\data\sw_dev\fsm_example\include\statemachine.h
 	"SpdifState.h"
 
 1542626359 source:c:\data\fsm_example\main.cpp
@@ -52,11 +50,13 @@
 1542657500 c:\data\sw_dev\fsm_example\include\irstate.h
 	"State.h"
 
-1542657406 source:c:\data\sw_dev\fsm_example\src\irstate.cpp
+1542694097 source:c:\data\sw_dev\fsm_example\src\irstate.cpp
+	<iostream>
 	"IrState.h"
 	"SpdifState.h"
 
-1542657287 source:c:\data\sw_dev\fsm_example\src\spdifstate.cpp
+1542694097 source:c:\data\sw_dev\fsm_example\src\spdifstate.cpp
+	<iostream>
 	"SpdifState.h"
 	"IrState.h"
 
