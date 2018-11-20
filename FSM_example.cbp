@@ -28,7 +28,10 @@
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/IrState.cpp" />
+		<Unit filename="src/SpdifState.cpp" />
 		<Unit filename="src/State.cpp" />
+		<Unit filename="src/StateMachine.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
