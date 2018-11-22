@@ -1,6 +1,7 @@
 #ifndef EVENTQUEUE_H
 #define EVENTQUEUE_H
 
+#include <iostream>
 #include "Fifo.h"
 
 enum EventT {
@@ -20,28 +21,14 @@ typedef struct {
 
 class EventQueue {
 public:
-	static message_t get() {
-		if (fifo->empty()) {
-            message_t msg;
-            msg.event = EVENT_IDLE;
-            msg.data = 0;
-            return msg;
-		}
-
-        return fifo->get();
-	}
-
-	static void post(EventT event, uint32_t data = 0) {
-		message_t msg;
-		msg.event = event;
-		msg.data = data;
-		fifo->put(msg);
-	}
-
-	static Fifo<message_t> *fifo;
+	message_t get();
+	void post(EventT event, uint32_t data = 0);
+	static EventQueue *instance();
 
 private:
 	EventQueue(); // Prevent creating object
+
+	Fifo<message_t> *_fifo;
 };
 
 #endif

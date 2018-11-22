@@ -1,14 +1,15 @@
 # depslib dependency file v1.0
-1542697952 source:c:\data\sw_dev\fsm_example\main.cpp
+1542914670 source:c:\data\sw_dev\fsm_example\main.cpp
 	<iostream>
 	<thread>
 	<chrono>
 	"StateMachine.h"
+	"EventQueue.h"
 
 1542298463 c:\data\sw_dev\fsm_example\include\machine.h
 	"State.h"
 
-1542697983 c:\data\sw_dev\fsm_example\include\state.h
+1542914520 c:\data\sw_dev\fsm_example\include\state.h
 	<iostream>
 	"EventQueue.h"
 
@@ -16,7 +17,8 @@
 
 1542649044 c:\data\sw_dev\fsm_example\include\globaldefinitions.h
 
-1542698174 c:\data\sw_dev\fsm_example\include\eventqueue.h
+1542914585 c:\data\sw_dev\fsm_example\include\eventqueue.h
+	<iostream>
 	"Fifo.h"
 
 1542697310 c:\data\sw_dev\fsm_example\include\statemachine.h
@@ -49,13 +51,15 @@
 1542697589 c:\data\sw_dev\fsm_example\include\irstate.h
 	"State.h"
 
-1542697589 source:c:\data\sw_dev\fsm_example\src\irstate.cpp
+1542913657 source:c:\data\sw_dev\fsm_example\src\irstate.cpp
 	"IrState.h"
 	"SpdifState.h"
+	"EventQueue.h"
 
-1542697589 source:c:\data\sw_dev\fsm_example\src\spdifstate.cpp
+1542915126 source:c:\data\sw_dev\fsm_example\src\spdifstate.cpp
 	"SpdifState.h"
 	"IrState.h"
+	"EventQueue.h"
 
 1542697606 source:c:\data\sw_dev\fsm_example\src\statemachine.cpp
 	"StateMachine.h"
@@ -68,4 +72,7 @@
 1542701445 source:c:\data\fsm_example\src\state.cpp
 	"State.h"
 	"StateMachine.h"
+
+1542914171 source:c:\data\sw_dev\fsm_example\src\eventqueue.cpp
+	"EventQueue.h"
 

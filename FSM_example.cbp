@@ -28,6 +28,7 @@
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/EventQueue.cpp" />
 		<Unit filename="src/IrState.cpp" />
 		<Unit filename="src/SpdifState.cpp" />
 		<Unit filename="src/State.cpp" />

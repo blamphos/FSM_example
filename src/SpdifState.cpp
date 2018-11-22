@@ -1,5 +1,6 @@
 #include "SpdifState.h"
 #include "IrState.h"
+#include "EventQueue.h"
 
 SpdifState::SpdifState()
 {
@@ -20,7 +21,7 @@ void SpdifState::onStateExecution(message_t msg) {
     switch (msg.event) {
         case EVENT_IR_COMMAND_RECEIVED:
             std::cout << "IR command received\n";
-            EventQueue::post(EVENT_SET_VOLUME, volume % 100);
+            EventQueue::instance()->post(EVENT_SET_VOLUME, volume % 100);
             volume++;
             break;
         case EVENT_IR_MEAS_READY:
@@ -34,7 +35,7 @@ void SpdifState::onStateExecution(message_t msg) {
             std::cout << "SPDIF input changed " << msg.data << std::endl;
             break;
         case EVENT_BUTTON_PRESSED:
-            EventQueue::post(EVENT_CHANGE_INPUT, input_counter++);
+            EventQueue::instance()->post(EVENT_CHANGE_INPUT, input_counter++);
             if (input_counter > 2) {
                 input_counter = 0;
             }
