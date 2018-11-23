@@ -33,8 +33,7 @@
 1542627044 c:\data\fsm_example\include\globaldefinitions.h
 	"EventQueue.h"
 
-1542962957 c:\data\fsm_example\include\eventqueue.h
-	<iostream>
+1542963446 c:\data\fsm_example\include\eventqueue.h
 
 1542619189 c:\data\fsm_example\include\fifo.h
 
@@ -66,7 +65,8 @@
 	"StateMachine.h"
 	"SpdifState.h"
 
-1542963064 c:\data\fsm_example\include\state.h
+1542963425 c:\data\fsm_example\include\state.h
+	<iostream>
 	"EventQueue.h"
 
 1542963053 source:c:\data\fsm_example\src\state.cpp
@@ -86,7 +86,7 @@
 1542961205 source:c:\data\fsm_example\src\eventqueue.cpp
 	"EventQueue.h"
 
-1542963074 source:c:\data\fsm_example\src\irstate.cpp
+1542963425 source:c:\data\fsm_example\src\irstate.cpp
 	"IrState.h"
 	"SpdifState.h"
 

@@ -1,8 +1,6 @@
 #ifndef EVENTQUEUE_H
 #define EVENTQUEUE_H
 
-#include <iostream>
-
 enum EventT {
 	EVENT_IR_COMMAND_RECEIVED,
 	EVENT_IR_MEAS_READY,

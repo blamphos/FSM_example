@@ -1,6 +1,7 @@
 #include "IrState.h"
 #include "SpdifState.h"
 
+
 IrState::IrState() {
 
 }
