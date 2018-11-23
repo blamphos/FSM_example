@@ -1,10 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include <iostream>
 #include "EventQueue.h"
-
-class StateMachine;
 
 class State {
 public:
@@ -15,6 +12,7 @@ public:
 protected:
     State();
     void changeState(State *nextState);
+    void post(EventT event, uint32_t data = 0);
 };
 
 #endif
